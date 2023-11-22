@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         OA DAL
 // @namespace    http://xxxxx.net/
-// @version      0.2
+// @version      0.3
 // @description  try to take over the world!
 // @author       You
 // @match        http*://oa.dlp.com.tw/*
@@ -53,17 +53,6 @@ body.style.backgroundImage = 'url("")';
 
 });
 
-
-var tbs = document.querySelectorAll('table');
-
-tbs.forEach(function(tb) {
-
-  tb.style.backgroundColor = '#f7f7f7';
-  //tb.style.backgroundImage = 'url("")';
-
-});
-
-
 var tds = document.querySelectorAll('td');
 
 tds.forEach(function(td) {
@@ -80,17 +69,6 @@ tds.forEach(function(td) {
 
 });
 
-
-var ths = document.querySelectorAll('th');
-
-ths.forEach(function(th) {
-  //th.style.backgroundColor = '#f7f7f7';
-  //th.style.backgroundImage = 'url("")';
-  //th.setAttribute('width','');
-});
-
-
-
 var addNew= document.querySelector("#table116 > tbody > tr > td:nth-child(1)");
 if (addNew){
     addNew.innerHTML =
@@ -103,8 +81,6 @@ if (addNew){
                 <span class="style15">郵件發送狀態(發送)</span>&nbsp;
                 <span class="style15"></span></font>`;
 }
-
-
 
 var saveLayoutElement = document.getElementById('saveLayout');
 if (saveLayoutElement){
@@ -174,7 +150,7 @@ GM_addStyle(".postilStyle { width : 280px;}");
 GM_addStyle("#div_mypro_content div > div:last-child{ height : 15 !important;}");
 GM_addStyle(".height35 { height: 36px;}");
 GM_addStyle(".taba  { border-width: 1px; border-collapse: collapse;  border-color: #99BBE8;}");
-GM_addStyle("#table75  { border: 1px dashed #99BBE8; width: 994; }");
+GM_addStyle("#table75  { border: 1px dashed #99BBE8; width: 1004px; }");
 GM_addStyle("#table87  { border: 1px dashed #99BBE8;}");
 GM_addStyle("#table84  { border: 1px dashed #99BBE8;}");
 GM_addStyle("#table90  { border: 1px dashed #99BBE8;}");
@@ -186,6 +162,26 @@ GM_addStyle(".tbStyle3 td,th { min-width:1px; }");
 GM_addStyle(".itemStyle1 { width: 252px;}");
 GM_addStyle("#title { border-bottom: unset; }");
 
+GM_addStyle(".table-wrapper {    display: flex;    justify-content: center;}");
+
+var wtable = document.getElementById("table76");
+if (wtable){
+   var wrapper = document.createElement('div');
+   wrapper.className = 'table-wrapper';
+   wrapper.style.position = 'relative';
+   wtable.parentNode.replaceChild(wrapper, wtable);
+   wrapper.appendChild(wtable);
+
+}
+
+var w1table = document.getElementById("table75");
+if (w1table){
+   var w1rapper = document.createElement('div');
+   w1rapper.className = 'table-wrapper';
+   w1table.parentNode.replaceChild(w1rapper, w1table);
+   w1rapper.appendChild(w1table);
+
+}	
 
 var corr_1 = document.querySelector("#div2 > form > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(2) > td > table");
     if (corr_1) {
@@ -224,14 +220,11 @@ var corr_7 = document.querySelector("#oa_frame > frame:nth-child(3)");
         GM_addStyle("frame#cont-id body {  display: flex;   justify-content: center;   align-items: center;   text-align: center; }");
     }
 
-
 var calender_height = document.querySelector("#div_content_mold_2_detail > iframe");
     if (calender_height){
         calender_height.setAttribute('height','240');
         calender_height.setAttribute('width','100%');
     }
-
-
 
 var personalInfo = document.querySelector("#table115");
     if (personalInfo){
@@ -274,12 +267,9 @@ var hideColumns = document.querySelector("body > div.outSideStyle > table.tb");
         }
     }
 
+var table = document.querySelector("#table8.tb");
 
-
-  //var table = document.getElementById("table8");
-  var table = document.querySelector("#table8.tb");
-  //var istb = table.getAttribute('border');
-  if (table){
+if (table){
   var tbody = table.getElementsByTagName("tbody")[0];
   var rows = tbody.getElementsByTagName("tr");
 
@@ -306,7 +296,7 @@ var hideColumns = document.querySelector("body > div.outSideStyle > table.tb");
     tbody.appendChild(rowsArray[i]);
   }
 
-  }
+}
 
 var div_3 = document.querySelector("#table109 > tbody > tr:nth-child(3) > td");
     if (div_3){
@@ -354,5 +344,18 @@ var div_3 = document.querySelector("#table109 > tbody > tr:nth-child(3) > td");
 		}
 	}
     }
+
+var div = document.getElementById('div_content_mold_1');
+	if (div){
+    		div.style.width = '';
+		var elements = div.getElementsByTagName('table');
+		for(var it = 0; it < elements.length; it++){
+    		elements[it].setAttribute("width","");
+		}
+		var tcl = document.querySelector("#table85 > tbody > tr:nth-child(1) > td:nth-child(2)");
+    		if (tcl){
+    			tcl.setAttribute("width","");
+    		}
+}	
 
 })();
