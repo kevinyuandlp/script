@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         OA DAL
 // @namespace    http://xxxxx.net/
-// @version      0.3
+// @version      0.3.1
 // @description  try to take over the world!
 // @author       You
 // @match        http*://oa.dlp.com.tw/*
