@@ -303,7 +303,7 @@ var div_3 = document.querySelector("#table109 > tbody > tr:nth-child(3) > td");
         div_3.setAttribute("valign","top");
       var div_3_detail = document.querySelector("#dl_show");
         if (div_3_detail){
-        div_3_detail.setAttribute("height","400");
+        div_3_detail.setAttribute("height","300");
         }
 
         jQuery.fn.divMin = function(oDiv,flag){
@@ -321,7 +321,7 @@ var div_3 = document.querySelector("#table109 > tbody > tr:nth-child(3) > td");
 			}
 			if(flag==1){
 				if(id=="div_content_mold_3" || id=="div_content_mold_4"){
-					oDiv.css({width:550,height:430});
+					oDiv.css({width:550,height:330});
 				}
 				if(id=="content_web_show"){
 					oDiv.css({width:600,height:236});
@@ -333,11 +333,12 @@ var div_3 = document.querySelector("#table109 > tbody > tr:nth-child(3) > td");
 		}
 		if(detailDiv.is(":hidden")){
 			if(id=="div_content_mold_3" || id=="div_content_mold_4"){
-					oDiv.css({width:550,height:430});
+					oDiv.css({width:550,height:330});
 			}
 			if(id=="div_content_mold_1" ){
-			oDiv.css({width:550,height:26});
-			tcl.setAttribute("width","");				
+				//oDiv.css({width:550,height:26});
+				tcl.setAttribute("width","");
+				div.style.width = '';
 			}
 			detailDiv.show();
 			$("#"+id+"_min").attr("src","sysImg/divMin.gif");
@@ -351,16 +352,31 @@ var div_3 = document.querySelector("#table109 > tbody > tr:nth-child(3) > td");
     }
 
 var div = document.getElementById('div_content_mold_1');
-	if (div){
-    		div.style.width = '';
-		var elements = div.getElementsByTagName('table');
-		for(var it = 0; it < elements.length; it++){
-    		elements[it].setAttribute("width","");
-		}
-		var tcl = document.querySelector("#table85 > tbody > tr:nth-child(1) > td:nth-child(2)");
-    		if (tcl){
-    			tcl.setAttribute("width","");
-    		}
+var tcl = document.querySelector("#table85 > tbody > tr:nth-child(1) > td:nth-child(2)");	
+if (div){
+    const targetNode = document.getElementById('div_dis_list');
+    const config = { attributes: true, childList: true, subtree: true };
+    const callback = function(mutationsList, observer) {
+
+    var u = targetNode.querySelector('u');
+    if (u) {
+            if (targetNode.textContent.length>26){
+            div.style.width = '';
+            var elements = div.getElementsByTagName('table');
+            for(var it = 0; it < elements.length; it++){
+                 elements[it].setAttribute("width","");
+            }
+            if (tcl){
+            tcl.setAttribute("width","");
+            }
+            } else { div.style.width = '320'; }
+        
+    } else {
+            div.style.width = '320';
+    }
+};
+const observer = new MutationObserver(callback);
+observer.observe(targetNode, config);
 }	
 
 })();
