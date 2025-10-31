@@ -38,7 +38,7 @@ var obj = JSON.parse(body);
 // ip.sb 字段适配
 var countryCode = obj["country_code"];
 var country = obj["country"];
-var region = obj["region"];
+var region = obj["region"] || obj["country"];
 var city = obj["city"];
 var ip = obj["ip"];
 var timezone = obj["timezone"];
